@@ -28,21 +28,21 @@ export default function Product({categoryList}:categoryProps){
     const [avatarUrl, setAvatarUrl] = useState('');
     const [imageAvatar, setImageAvatar] = useState(null);
 
-    function handleFile(e:ChangeEvent<HTMLInputElement>){
-        if(!e.target.files){
-            return
-        }
-        const image = e.target.files[0];
-        if(!image){
-            return
-        }
-        if(image.type === 'image/jpeg' || image.type === 'image/png'){
+    // function handleFile(e:ChangeEvent<HTMLInputElement>){
+    //     if(!e.target.files){
+    //         return
+    //     }
+    //     const image = e.target.files[0];
+    //     if(!image){
+    //         return
+    //     }
+    //     if(image.type === 'image/jpeg' || image.type === 'image/png'){
 
-            setImageAvatar(image);
-            setAvatarUrl(URL.createObjectURL(e.target.files[0]))
+    //         setImageAvatar(image);
+    //         setAvatarUrl(URL.createObjectURL(e.target.files[0]))
 
-        }
-    }
+    //     }
+    // }
     function handleChangeCategory(event){
         setCategorySelected(event.target.value)
     }
@@ -52,7 +52,7 @@ export default function Product({categoryList}:categoryProps){
         try{
             const data = new FormData();
             
-            if(name === '' || price === '' || description === '' || imageAvatar === null){
+            if(name === '' || price === '' || description === ''){
                  toast.error('Preencha todos os dados');
                  return;
             }
@@ -100,7 +100,7 @@ export default function Product({categoryList}:categoryProps){
                             <span>
                                 <FiUpload size={30} color="FFF"/>
                             </span>
-                            <input type="file" accept="image/png, image/jpeg" onChange={handleFile}/>
+                            <input type="file" accept="image/png, image/jpeg"/>
 
                             {avatarUrl &&(
                                 <img
